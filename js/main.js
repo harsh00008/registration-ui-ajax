@@ -194,7 +194,7 @@ function submitForm(){
 		alert("Errors: \n" + error);
 		return false;
 	}
-	saveToSessionStorage();
+	submitAjax();
 	return false;
 }
 
@@ -260,14 +260,47 @@ function validateSecurityQuestion(question){
 function clearForm(){
 	document.getElementById("registration-form").reset();
 	var errors = document.getElementsByClassName("error");
-
-	 for(var i = errors.length - 1; i >= 0; --i)
-    {
-        // PERFORM STUFF ON THE ELEMENT
+	for(var i = errors.length - 1; i >= 0; --i){
         errors[i].innerHTML = "";
-
-        // elements[i] no longer exists past this point, in most browsers
     } 
 }
 
+
+//Ajax submission to database
+function submitAjax(){
+	console.log("Sending AJAX...");
+	var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    	
+    	var registrationStatus = document.getElementById("registration-text");
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        	var response = xmlhttp.responseText;
+        	console.log("SERVER RESPONSE: " + response);
+        	alert("SERVER: " + response);
+	        if(response != "error"){
+        		registrationStatus.innerHTML = response;
+	            registrationStatus.className="success";	
+        	}else{
+        		registrationStatus.innerHTML = response;
+	            registrationStatus.className="fail";	
+        	}
+        }
+    }
+    //parameters to send
+    var username = encodeURIComponent(document.getElementById("username").value);
+	var password = encodeURIComponent(document.getElementById("password").value);
+	var email = encodeURIComponent(document.getElementById("email").value);
+	var securityQuestionOne = encodeURIComponent(document.getElementById("security-question-1").value);
+	var securityQuestionOneAnswer = encodeURIComponent(document.getElementById("security-answer-1").value);
+	var securityQuestionTwo = encodeURIComponent(document.getElementById("security-question-2").value);
+	var securityQuestionTwoAnswer = encodeURIComponent(document.getElementById("security-answer-2").value);
+  	var mobile = encodeURIComponent(document.getElementById("mobile").value);
+  	var address = encodeURIComponent(document.getElementById("address").value);
+	var parameters="username="+username+"&password="+password + "&email=" + email + "&securityOne=" + securityQuestionOne + "&answerOne=" + securityQuestionOneAnswer + "&securityTwo=" + securityQuestionTwo + "&answerTwo=" + securityQuestionTwoAnswer+"&mobile=" + mobile + "&address="+ address;
+
+    xmlhttp.open("POST", "http://localhost:3000/register", true);
+
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(parameters);
+}
 

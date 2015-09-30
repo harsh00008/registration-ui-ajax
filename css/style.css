@@ -171,3 +171,20 @@ progress[value] {
 	width:42%;
 	display: inline;
 }
+
+.success, .fail{
+    padding: 20px;
+    width: 100%;
+    display: block;
+    margin-top: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+}
+.success{
+    background-color: green;
+}
+.fail{
+    background-color: red;
+}
