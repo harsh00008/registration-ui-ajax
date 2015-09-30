@@ -136,7 +136,6 @@ function saveToSessionStorage(){
 }
 
 function submitForm(){
-	
 	var error = "";
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
@@ -265,10 +264,20 @@ function clearForm(){
     } 
 }
 
+function getInterest(){
+	var optionValues = [];
+	var interests = document.getElementsByName("interest");
+	var k = 0;
+	for(var i=0; interests[i]; ++i){
+      if(interests[i].checked){
+           optionValues[k++] = interests[i].value;
+      }
+	}
+	return optionValues;
+}
 
 //Ajax submission to database
 function submitAjax(){
-	console.log("Sending AJAX...");
 	var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
     	
@@ -280,13 +289,15 @@ function submitAjax(){
 	        if(response != "error"){
         		registrationStatus.innerHTML = response;
 	            registrationStatus.className="success";	
+	            clearForm();
         	}else{
         		registrationStatus.innerHTML = response;
 	            registrationStatus.className="fail";	
         	}
         }
     }
-    //parameters to send
+
+    //parameters to send from form
     var username = encodeURIComponent(document.getElementById("username").value);
 	var password = encodeURIComponent(document.getElementById("password").value);
 	var email = encodeURIComponent(document.getElementById("email").value);
@@ -296,10 +307,12 @@ function submitAjax(){
 	var securityQuestionTwoAnswer = encodeURIComponent(document.getElementById("security-answer-2").value);
   	var mobile = encodeURIComponent(document.getElementById("mobile").value);
   	var address = encodeURIComponent(document.getElementById("address").value);
-	var parameters="username="+username+"&password="+password + "&email=" + email + "&securityOne=" + securityQuestionOne + "&answerOne=" + securityQuestionOneAnswer + "&securityTwo=" + securityQuestionTwo + "&answerTwo=" + securityQuestionTwoAnswer+"&mobile=" + mobile + "&address="+ address;
+  	var interestOne = encodeURIComponent(document.getElementById("interest-1").value);
+  	var interestTwo = encodeURIComponent(document.getElementById("interest-2").value);
 
+  	var parameters="username="+username+"&password="+password + "&email=" + email + "&securityOne=" + securityQuestionOne + "&answerOne=" + securityQuestionOneAnswer + "&securityTwo=" + securityQuestionTwo + "&answerTwo=" + securityQuestionTwoAnswer+"&mobile=" + mobile + "&address="+ address + "&interestOne=" + interestOne + "&interestTwo=" + interestTwo ;
+	//plug in any server here
     xmlhttp.open("POST", "http://localhost:3000/register", true);
-
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(parameters);
 }
