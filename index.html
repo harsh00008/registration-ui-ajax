@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CMPE 280 - Registration Form </title>
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,300,700,700italic,500italic,300italic,400italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="./css/style.css">
+	<script src="./js/main.js"></script>
+</head>
+
+<body>
+	<header>CMPE280 Assignment 2</header>
+	<div class="container">
+			<h1 class="page-title">Registration</h1>
+			<section>
+				
+				<form action="#" onsubmit="return submitForm();" method="POST" id="registration-form">
+					<fieldset>
+						<!-- Username -->
+						<div class="form-group">
+							<label for="username">Username: </label>
+							<input id="username" type="text" required="required" name="username" placeholder="Username"> 
+						</div>
+						<!-- Password -->
+						<div class="form-group">
+							<label for="password">Password: </label>
+							<input type="password" id="password" required="required" name="password" onfocus="checkPasswordStrength(this.value)" onkeyup="checkPasswordStrength(this.value)" placeholder="Password"> 
+
+							<progress id="strength-meter" class="password-strength" max="100" value="20">
+
+							</progress>
+							<span id="strength-indicator">Nothing typed</span>
+						</div>
+						<!-- Verify password -->
+						<div class="form-group">
+							<label for="repassword">Verify Password: </label>
+							<input type="password" onkeyup="verifyPasswordMatch(this.value)" maxlength=20 required="required" id="repassword" name="repassword" placeholder="Password again"> 
+							<div class="error" id="error-repass"></div>
+						</div>
+						<!-- Email -->
+						<div class="form-group">
+							<label for="email">Email Address: </label>
+							<input type="email" maxlength=20 id="email" onkeyup="validateEmail(this.value)" name="email" required="required" title="Please provide a valid email address" pattern="^[a-zA-Z0-9_\-.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$" placeholder="Email"> 
+							<div class="error" id="error-email"></div>
+						</div>
+						<!-- Verify Email -->
+						<div class="form-group">
+							<label for="reemail">Verify Email Address: </label>
+							<input type="email" title="Please provide a valid email address" id="reemail" onkeyup="verifyEmailMatch(this.value)" onfocus="validateEmail(this.value);verifyEmailMatch(this.value)" required="required" name="reemail" placeholder="Email again" pattern="^[a-zA-Z0-9_\-.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$"> 
+						</div>
+						<!-- Security Question 1 -->
+						<div class="form-group">
+							<label for="security-question-1">Security Question: </label>
+							<input required="required" list="security-1" id="security-question-1" name="security-question-1" placeholder="Security Question 1">
+							<datalist id="security-1">
+								<option value="Sum of 2 + 3">
+								<option value="Sum of 100 + 200">
+								<option value="23 x 100 = ?">
+								<option value="Capital of India">
+								<option value="Capital of India">
+							</datalist>
+							<div class="error" id="error-question"></div>
+						</div>
+						<!-- Security Answer 1 -->
+						<div class="form-group">
+							<label for="security-question-1">Security Answer: </label>
+							<input required="required" type="text" id="security-answer-1" name="security-answer-1" placeholder="Security Answer"> 
+						</div>
+						<!-- Security Question 2 -->
+						<div class="form-group">
+							<label for="security-question-2">Security Question: </label>
+							<input required="required" list="security-2" id="security-question-2" name="security-question-2" oninput="validateSecurityQuestion(this.value)" onchange="validateSecurityQuestion(this.value)" onfocusout="validateSecurityQuestion(this.value)" placeholder="Security Question 2">
+							<datalist id="security-2">
+								<option value="Sum of 2 + 3">
+								<option value="Sum of 100 + 200">
+								<option value="23 x 100 = ?">
+								<option value="Capital of India">
+								<option value="Capital of India">
+							</datalist>
+						</div>
+						<!-- Security Answer 2 -->
+						<div class="form-group">
+							<label for="security-question-2">Security Answer: </label>
+							<input required="required" type="text" id="security-answer-2" name="security-answer-2" placeholder="Security Answer"> 
+						</div>
+
+						<!-- Mobile -->
+						<div class="form-group">
+							<label for="mobile">Mobile: </label>
+							<input id="mobile" type="text" onfocusout="validateMobile(this.value)" onkeyup="validateMobile(this.value)"  name="mobile" required pattern="\(?\d{3}\)?-? *\d{3}-? *-?\d{4}" title="Please provide number in US format" placeholder="Mobile"> 
+							<div class="error" id="error-mobile"></div>
+						</div>
+
+						<!-- Address -->
+						<div class="form-group">
+							<label for="address">Address: </label>
+							<textarea name="address" required="required" cols=100 rows=5></textarea>
+						</div>
+
+						<!-- Interest -->
+						<div class="form-group">
+
+							<label for="interest"> </label>
+							<div class="checkbox-container">
+								<p>Areas you maybe interested in, select one or more.</p>
+								<div class="checkbox">
+									<input type="checkbox" unchecked name="interest" value="option-1"> Option 1
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" unchecked name="interest" value="option-2"> Option 2
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" unchecked name="interest" value="option-3"> Option 3
+								</div>
+								<div class="checkbox"> 
+									<input type="checkbox" unchecked name="interest" value="option-4"> Option 4
+								</div>
+							</div>
+							
+
+						</div>
+
+						<!-- Form button -->
+						<div class="form-buttons">
+							<button type="button" class="submit cancel-button" onclick="test()" value="Cancel">Cancel</button>
+							<input type="submit" class="submit" id="submit" value="Register">
+							
+						</div>
+					</fieldset>
+
+				</form>
+			</section>
+
+	</div>
+	<footer>
+		All rights reserved. For CMPE280.
+	</footer>
+	
+</body>
+</html>

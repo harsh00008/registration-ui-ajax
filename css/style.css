@@ -1,0 +1,173 @@
+body{
+	font-family: 'Ubuntu', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #D5E1DD;
+}
+
+header{
+	background-color: #2B3E42;
+	color: #F7F3E8;
+	padding: 18px;
+    box-shadow: -5px 1px 16px black;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+}
+
+footer{
+	text-align: center;
+    margin-top: 40px;
+    font-size: 10px;
+    margin-bottom: 30px;
+}
+
+section{
+    width: 50%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    margin-top:30px;
+    box-shadow: 2px 2px 9px grey;
+}
+
+fieldset{
+	border: 0;
+	
+}
+
+.form-group{
+	padding: 7px;
+	position: relative;
+}
+.page-title{
+	text-align: center;
+    margin: 0;
+    color: black;
+    display: block;
+    padding-bottom: -4px;
+    margin-top: 36px;
+    font-size: 24px;
+}
+
+.form-group label{ 
+	width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    padding: 8px;
+    position: relative;
+    top: 1px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+	width: 41%;
+    padding: 8px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.password-strength{
+	font-style: italic;
+    position: absolute;
+    right: -7px;
+    top: 10px;
+    font-size: 12px;
+}
+
+progress {
+ 	color: black;
+
+}
+progress::-webkit-progress-bar {
+    background: black;
+    border: 0;
+    height: 18px;
+    
+}
+progress::-webkit-progress-value {
+    background: black;
+    border: 0;
+    height: 18px;
+    
+}
+progress::-moz-progress-bar {
+    background: black;
+    border: 0;
+    height: 18px;
+}
+
+/* Polyfill */
+progress[aria-valuenow]:before  {
+    background: black;
+}
+
+progress[value] {
+  width: 150px;
+  height: 20px;
+}
+
+#strength-indicator{
+	font-size: 11px;
+    text-align: center;
+    display: block;
+    float: right;
+    position: relative;
+    top: 22px;
+}
+
+.submit{
+	background-color: #F2583E;
+    color: white;
+    border: 0;
+    width: 200px;
+    padding: 10px;
+    font-size: 14px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.submit:hover{
+	-webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    background-color: #77BED2 !important;
+    cursor: pointer;
+}
+
+.error{
+	font-size: 10px;
+    float: right;
+    position: relative;
+    top: 14px;
+    color: red;
+    font-weight:700;
+}
+
+.form-buttons{
+	text-align:center;
+}
+
+.cancel-button{
+	background-color: #747E80;
+	width: 82px;
+}
+
+.checkbox-container{
+	width: 55%;
+	display: inline-block;
+}
+
+.checkbox{
+	width: 40%;
+	display: inline-block;
+}
+
+.form-group input[name=interest]{
+	width:42%;
+	display: inline;
+}
