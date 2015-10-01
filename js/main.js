@@ -147,14 +147,16 @@ function submitForm(){
 	var securityAnswerOne = document.getElementById("security-answer-1").value;
 	var securityTwo = document.getElementById("security-question-2").value;
 	var securityAnswerTwo = document.getElementById("security-answer-2").value;
-	var interests = document.getElementsByName("interest");
-
+	var interestOne = document.getElementById("interest-1").value;
+	var interestTwo = document.getElementById("interest-2").value;
 	var checked = 0;
-	for(var i = 0; i< interests.length; i++){
-		if(interests[i].checked){
-			checked++;
-		}
+	
+	if(interestOne.checked == false && interestTwo.checked == false){
+		checked = 0;
+	}else{
+		checked = 1;
 	}
+
 	if(checked == 0){
 		error = error + " - Please check atleast one interest.\n";
 	}
@@ -307,10 +309,17 @@ function submitAjax(){
 	var securityQuestionTwoAnswer = encodeURIComponent(document.getElementById("security-answer-2").value);
   	var mobile = encodeURIComponent(document.getElementById("mobile").value);
   	var address = encodeURIComponent(document.getElementById("address").value);
-  	var interestOne = encodeURIComponent(document.getElementById("interest-1").value);
-  	var interestTwo = encodeURIComponent(document.getElementById("interest-2").value);
-
-  	var parameters="username="+username+"&password="+password + "&email=" + email + "&securityOne=" + securityQuestionOne + "&answerOne=" + securityQuestionOneAnswer + "&securityTwo=" + securityQuestionTwo + "&answerTwo=" + securityQuestionTwoAnswer+"&mobile=" + mobile + "&address="+ address + "&interestOne=" + interestOne + "&interestTwo=" + interestTwo ;
+  	var interestOne = document.getElementById("interest-1").checked;
+  	var interestTwo = document.getElementById("interest-2").checked;
+  	var interest = "&";
+  	if(interestOne){
+  		interest = interest + "interestOne=option-1&";
+  	}
+  	if(interestTwo){
+  		interest = interest + "interestTwo=option-2";
+  	}
+  	var parameters="username="+username+"&password="+password + "&email=" + email + "&securityOne=" + securityQuestionOne + "&answerOne=" + securityQuestionOneAnswer + "&securityTwo=" + securityQuestionTwo + "&answerTwo=" + securityQuestionTwoAnswer+"&mobile=" + mobile + "&address="+ address + interest;
+  	console.log(parameters);
 	//plug in any server here
     xmlhttp.open("POST", "http://localhost:3000/register", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

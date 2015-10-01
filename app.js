@@ -24,8 +24,8 @@ app.post('/register', function (req, res) {
 	var securityQuestionTwoAnswer = req.body.answerTwo;
   	var mobile = req.body.mobile;
   	var address = req.body.address;
-  	var interestOne = req.body.interestOne == undefined || req.body.interestOne == "" ? "None" : req.body.interestOne;
-  	var interestTwo = req.body.interestTwo == undefined || req.body.interestTwo == "" ? "None" : req.body.interestTwo ;
+  	var interestOne = req.body.interestOne == undefined || req.body.interestOne == "" || req.body.interestOne == null ? "None" : req.body.interestOne;
+  	var interestTwo = req.body.interestTwo == undefined || req.body.interestTwo == "" ? "None" || req.body.interestTwo == null: req.body.interestTwo ;
 
   	var interest = interestOne + "," + interestTwo
   	// Use connect method to connect to the Server
